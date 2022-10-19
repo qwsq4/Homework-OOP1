@@ -1,50 +1,50 @@
 public class car {
-    String brand = "default";
-    String model = "default";
-    double engineVolume = 1.5;
-    String color = "белый";
-    int productionYear = 2000;
-    String productionCountry = "default";
-
-    car() {
-    }
+    String brand;
+    String model;
+    double engineVolume;
+    String color;
+    int productionYear;
+    String productionCountry;
 
     car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry) {
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-        this.color = color;
-        this.productionYear = productionYear;
-        this.productionCountry = productionCountry;
+        if (brand != null) {
+            this.brand = brand;
+        } else {
+            this.brand = "default";
+        }
+
+        if (model != null) {
+            this.model = model;
+        } else {
+            this.model = "default";
+        }
+
+        if (Double.compare(engineVolume, 0) != 0) {
+            this.engineVolume = engineVolume;
+        } else {
+            this.engineVolume = 1.5;
+        }
+
+        if (color != null) {
+            this.color = color;
+        } else {
+            this.color = "белый";
+        }
+
+        if (productionYear != 0) {
+            this.productionYear = productionYear;
+        } else {
+            this.productionYear = 2000;
+        }
+
+        if (productionCountry != null) {
+            this.productionCountry = productionCountry;
+        } else {
+            this.productionCountry = "default";
+        }
     }
 
-    car(String brand, String model, double engineVolume, String color, int productionYear) {
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-        this.color = color;
-        this.productionYear = productionYear;
-    }
-
-    car(String brand, String model, double engineVolume, String color) {
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-        this.color = color;
-    }
-
-    car(String brand, String model, double engineVolume) {
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-    }
-
-    car(String brand, String model) {
-        this.brand = brand;
-        this.model = model;
-    }
-
-    car(String brand) {
-        this.brand = brand;
+    public void represent() {
+        System.out.println(this.brand + " " + this.model + ", год выпуска - " + this.productionYear +  ", страна сборки - " + this.productionCountry + ", цвет - " + this.color + ", объем двигателя - " + this.engineVolume + " л.");
     }
 }
