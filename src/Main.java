@@ -1,16 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        human maxim = new human(1987, "Максим", "Минск", "Бренд-менеджер");
-        System.out.println("Привет! Меня зовут " + maxim.name +  ". Я из города " + maxim.town + ". Я родился в " + maxim.yearOfBirth + " году. Я работаю на должности " + maxim.job + ". Будем знакомы!");
+        human maxim = new human(1987, "Максим", "Минск");
+        maxim.represent();
 
         human anya = new human(1993, "Аня", "Москва", "Методист образовательных программ");
-        System.out.println("Привет! Меня зовут " + anya.name +  ". Я из города " + anya.town + ". Я родился в " + anya.yearOfBirth + " году. Я работаю на должности " + anya.job + ". Будем знакомы!");
+        anya.represent();
 
         human katya = new human(1994, "Катя", "Калинград", "Продакт-менеджер");
-        System.out.println("Привет! Меня зовут " + katya.name +  ". Я из города " + katya.town + ". Я родился в " + katya.yearOfBirth + " году. Я работаю на должности " + katya.job + ". Будем знакомы!");
+        katya.represent();
 
         human artyom = new human(1995, "Артём", "Москва", "Директор по развитию бизнеса");
-        System.out.println("Привет! Меня зовут " + artyom.name +  ". Я из города " + artyom.town + ". Я родился в " + artyom.yearOfBirth + " году. Я работаю на должности " + artyom.job + ". Будем знакомы!");
+        artyom.represent();
 
 
 
