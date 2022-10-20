@@ -10,18 +10,17 @@ public class Human {
         } else {
             this.yearOfBirth = Math.abs(yearOfBirth);
         }
-        if (name != null && town != null && job != null) {
-            this.name = name;
-            this.town = town;
-            this.job = job;
-        } else {
-            this.name = "Информация не указана";
-            this.town = "Информация не указана";
-            this.job = "Информация не указана";
-        }
-
+        this.name = checkNulity(name);
+        this.town = checkNulity(town);
+        this.job = checkNulity(job);
     }
     public void represent() {
         System.out.println("Привет! Меня зовут " + this.name +  ". Я из города " + this.town + ". Я родился в " + this.yearOfBirth + " году. Я работаю на должности " + this.job + ". Будем знакомы!");
         }
+
+    public String checkNulity(String value) {
+        if (value == null) {
+            value = "Информация не указана";
+        } return value;
+    }
 }

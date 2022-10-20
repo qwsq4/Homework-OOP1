@@ -7,17 +7,10 @@ public class Car {
     private final String productionCountry;
 
     Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry) {
-        if (brand != null && model != null && color != null && productionCountry != null) {
-            this.brand = brand;
-            this.model = model;
-            this.color = color;
-            this.productionCountry = productionCountry;
-        } else {
-            this.brand = "default";
-            this.model = "default";
-            this.color = "белый";
-            this.productionCountry = "default";
-        }
+            this.brand = checkNulity(brand);
+            this.model = checkNulity(model);
+            this.color = checkNulity(color);
+            this.productionCountry = checkNulity(productionCountry);
 
         if (Double.compare(engineVolume, 0) != 0) {
             this.engineVolume = engineVolume;
@@ -34,5 +27,11 @@ public class Car {
 
     public void represent() {
         System.out.println(this.brand + " " + this.model + ", год выпуска - " + this.productionYear +  ", страна сборки - " + this.productionCountry + ", цвет - " + this.color + ", объем двигателя - " + this.engineVolume + " л.");
+    }
+
+    public String checkNulity(String value) {
+        if (value == null || value.equals("")) {
+            value = "default";
+        } return value;
     }
 }
