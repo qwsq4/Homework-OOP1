@@ -1,5 +1,5 @@
 public class Human {
-    private final int yearOfBirth;
+    private int yearOfBirth;
     private String name;
     private String town;
     private String job;
@@ -19,8 +19,44 @@ public class Human {
         }
 
     public String checkNulity(String value) {
-        if (value == null) {
+        if (value == null || value.equals("")) {
             value = "Информация не указана";
         } return value;
+    }
+
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setYearOfBirth(int newYearOfBirth) {
+        if (newYearOfBirth > 0) {
+            this.yearOfBirth = newYearOfBirth;
+        } else {
+            this.yearOfBirth = 0;
+        }
+    }
+
+    public void setName(String newName) {
+        this.name = checkNulity(newName);
+    }
+
+    public void setTown(String newTown) {
+        this.town = checkNulity(newTown);
+    }
+
+    public void setJob(String newJob) {
+        this.job = checkNulity(newJob);
     }
 }
