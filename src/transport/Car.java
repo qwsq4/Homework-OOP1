@@ -1,16 +1,18 @@
 package transport;
 import java.time.LocalDate;
 
-public class Car {
+public class Car extends Transport {
     public static class CarKey {
         private final String remoteEngineStart;
         private final String keylessAccess;
 
         public CarKey(String remoteEngineStart, String keylessAccess) {
-            if (remoteEngineStart != null && !remoteEngineStart.equals("") && remoteEngineStart.equals("есть") || remoteEngineStart.equals("нет")) {
+            if (remoteEngineStart != null && !remoteEngineStart.equals("") && remoteEngineStart.equals("есть") ||
+                    remoteEngineStart.equals("нет")) {
                 this.remoteEngineStart = remoteEngineStart;
             } else this.remoteEngineStart = "нет";
-            if (keylessAccess != null && !keylessAccess.equals("") && keylessAccess.equals("есть") || keylessAccess.equals("нет")) {
+            if (keylessAccess != null && !keylessAccess.equals("") && keylessAccess.equals("есть") ||
+                    keylessAccess.equals("нет")) {
                 this.keylessAccess = keylessAccess;
             } else this.keylessAccess = "нет";
         }
@@ -70,12 +72,7 @@ public class Car {
         }
     }
 
-    private final String brand;
-    private final String model;
     private double engineVolume;
-    private String color;
-    private final int productionYear;
-    private final String productionCountry;
     private String transmission;
     private final String typeOfFrame;
     private String licensePlateNumber;
@@ -83,19 +80,14 @@ public class Car {
     private String typeOfTyre;
     private Insurance insurance;
 
-    public Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry, String transmission,String typeOfFrame, String licensePlateNumber, int seatsCount, String typeOfTyre, Insurance insurance) {
-            this.brand = checkNulity(brand);
-            this.model = checkNulity(model);
-            this.color = checkNulity(color);
-            this.productionCountry = checkNulity(productionCountry);
+    public Car(String brand, String model, double engineVolume, String color, int productionYear,
+               String productionCountry, String transmission,String typeOfFrame, String licensePlateNumber,
+               int seatsCount, String typeOfTyre, Insurance insurance, int maxSpeed) {
+        super(brand, model, productionYear, productionCountry, color, maxSpeed);
 
         if (Double.compare(engineVolume, 0) != 0) {
             this.engineVolume = engineVolume;
         } else this.engineVolume = 1.5;
-
-        if (productionYear != 0) {
-            this.productionYear = productionYear;
-        } else this.productionYear = 2000;
 
         if (seatsCount != 0) {
             this.seatsCount = seatsCount;
@@ -111,24 +103,8 @@ public class Car {
         this.insurance = insurance;
     }
 
-
-    public String getBrand() {
-        return brand;
-    }
-    public String getModel() {
-        return model;
-    }
     public double getEngineVolume() {
         return engineVolume;
-    }
-    public String getColor() {
-        return color;
-    }
-    public int getProductionYear() {
-        return productionYear;
-    }
-    public String getProductionCountry() {
-        return productionCountry;
     }
     public String getTransmission() {
         return transmission;
@@ -150,9 +126,6 @@ public class Car {
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume;
     }
-    public void setColor(String color) {
-        this.color = checkNulity(color);
-    }
     public void setTransmission(String transmission) {
         this.transmission = checkNulity(transmission);
     }
@@ -164,19 +137,20 @@ public class Car {
     }
 
     public void represent() {
-        System.out.println(this.brand + " " + this.model + ", год выпуска - " + this.productionYear +  ", страна " +
-                "сборки - " + this.productionCountry + ", цвет - " + this.color + ", объем двигателя - " +
+        System.out.println(getBrand() + " " + getModel() + ", год выпуска - " + getProductionYear() +  ", страна " +
+                "сборки - " + getProductionCountry() + ", цвет - " + getColor() + ", объем двигателя - " +
                 this.engineVolume + " л, коробка передач - " + this.transmission + ", тип кузова - " + this.typeOfFrame
-                + ", регистрационный номер - " + this.licensePlateNumber + ", кол-во мест - " + this.seatsCount + ", " +
+                + ", максимальная скорость - " + getMaxSpeed() + ", регистрационный номер - " +
+                this.licensePlateNumber + ", кол-во мест - " + this.seatsCount + ", " +
                 "тип резины - " + this.typeOfTyre + ". Страховка: срок действия страховки - " +
                 this.insurance.insuranceValidity + " год(лет), стоимость - " + this.insurance.insuranceCost + " руб., " +
                 "номер -" + this.insurance.insuranceNumber + ".");
+        refill();
     }
 
-    public String checkNulity(String value) {
-        if (value == null || value.equals("")) {
-            value = "default";
-        } return value;
+    @Override
+    public void refill() {
+        System.out.println("Заправка бензином на заправке.");
     }
 
     public void replaceTypeOfTyre() {
