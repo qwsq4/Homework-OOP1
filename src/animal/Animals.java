@@ -6,15 +6,17 @@ public abstract class Animals {
     private final int age; //Возраст
 
     public Animals(String family, String name, int age) {
-        if (family != null && !family.equals("")) {
-            this.family = family;
-        } else this.family = "Животное";
-        if (name != null && !name.equals("")) {
-            this.name = name;
-        } else this.name = "Животное";
+        this.family = checkNulity(family, "Животное");
+        this.name = checkNulity(name, "Животное");
         if (age >= 0) {
             this.age = age;
         } else this.age = 1;
+    }
+
+    public String checkNulity(String value, String replace) {
+        if (value == null || value.equals("")) {
+            value = replace;
+        } return value;
     }
 
     public final String getName() {

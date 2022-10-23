@@ -6,9 +6,7 @@ public abstract class Mammals extends Animals {
 
     public Mammals(String family, String name, int age, String habitat, int movementSpeed) {
         super(family, name, age);
-        if (habitat != null && !habitat.equals("")) {
-            this.habitat = habitat;
-        } else this.habitat = "наземно-воздушная";
+        this.habitat = checkNulity(habitat, "наземно-воздушная");
         if (movementSpeed > 0) {
             this.movementSpeed = movementSpeed;
         } else this.movementSpeed = 20;

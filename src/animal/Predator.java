@@ -7,9 +7,7 @@ public final class Predator extends Mammals{
 
     public Predator(String family, String name, int age, String habitat, int movementSpeed, String foodType) {
         super(family, name, age, habitat, movementSpeed);
-        if (foodType == null || foodType.equals("")) {
-            this.foodType = "охота";
-        } else this.foodType = foodType;
+        this.foodType = checkNulity(foodType, "охота");
     }
 
     public String getFoodType() {

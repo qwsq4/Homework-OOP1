@@ -7,9 +7,7 @@ public final class Herbivorous extends Mammals{
 
     public Herbivorous(String family, String name, int age, String habitat, int movementSpeed, String foodType) {
         super(family, name, age, habitat, movementSpeed);
-        if (foodType == null || foodType.equals("")) {
-            this.foodType = "травы";
-        } else this.foodType = foodType;
+        this.foodType = checkNulity(foodType, "травы");
     }
 
     public String getFoodType() {

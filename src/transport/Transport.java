@@ -11,14 +11,10 @@ public abstract class Transport {
     public Transport(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
         this.brand = checkNulity(brand);
         this.model = checkNulity(model);
-        if (productionYear > 0) {
-            this.productionYear = productionYear;
-        } else this.productionYear = 2000;
+        this.productionYear = checkZero(productionYear, 2000);
         this.productionCountry = checkNulity(productionCountry);
         this.color = checkNulity(color);
-        if (maxSpeed > 0) {
-            this.maxSpeed = maxSpeed;
-        } else this.maxSpeed = 100;
+        this.maxSpeed = checkZero(maxSpeed, 100);
     }
 
     public String getBrand() {
@@ -61,5 +57,11 @@ public abstract class Transport {
         if (value == null || value.equals("")) {
             value = "default";
         } return value;
+    }
+
+    int checkZero(int i, int r) {
+        if (i > 0) {
+            return i;
+        } else return r;
     }
 }

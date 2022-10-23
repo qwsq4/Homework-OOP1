@@ -5,9 +5,7 @@ public abstract class Birds extends Animals{
 
     public Birds(String family, String name, int age, String habitat) {
         super(family, name, age);
-        if (habitat != null && !habitat.equals("")) {
-            this.habitat = habitat;
-        } else this.habitat = "наземно-воздушная";
+        this.habitat = checkNulity(habitat, "наземно-воздушная");
     }
 
     public String getHabitat() {

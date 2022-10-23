@@ -8,19 +8,11 @@ public class Flower {
     int lifeSpan;
 
     public Flower(String name, String flowerColor, String country, double cost, int lifeSpan) {
-        if (checkNullity(name)) {
-            this.name = "Информация не указана";
-        } else this.name = name;
+        this.name = checkNullity(name, "Default");
+        this.flowerColor = checkNullity(flowerColor, "белый");
+        this.country = checkNullity(country, "Россия");
 
-        if (checkNullity(flowerColor)) {
-            this.flowerColor = "белый";
-        } else this.flowerColor = flowerColor;
-
-        if (checkNullity(country)) {
-            this.country = "Россия";
-        } else this.country = country;
-
-        if (cost <= 0) {
+        if (cost >= 0) {
             this.cost = 1;
         } else this.cost = cost;
 
@@ -37,10 +29,10 @@ public class Flower {
         return cost;
     }
 
-    public boolean checkNullity(String value) {
+    public String checkNullity(String value, String replace) {
         if (value == null || value.equals("")) {
-            return true;
-        } else return false;
+            return replace;
+        } else return value;
     }
 
     public void represent() {

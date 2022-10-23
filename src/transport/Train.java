@@ -10,17 +10,11 @@ public class Train extends Transport{
     public Train(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed,
                  int rideCost, int rideTime, String initialStation, String finalStation, int wagonsNumber) {
         super(brand, model, productionYear, productionCountry, color, maxSpeed);
-        if (rideCost > 0) {
-            this.rideCost = rideCost;
-        } else this.rideCost = 3000;
-        if (rideTime > 0) {
-            this.rideTime = rideTime;
-        } else this.rideTime = 5;
+        this.rideCost = checkZero(rideCost, 3000);
+        this.rideTime = checkZero(rideTime, 5);
         this.initialStation = checkNulity(initialStation);
         this.finalStation = checkNulity(finalStation);
-        if (wagonsNumber > 0) {
-            this.wagonsNumber = wagonsNumber;
-        } else this.wagonsNumber = 15;
+        this.wagonsNumber = checkZero(wagonsNumber, 10);
     }
 
     public int getRideCost() {

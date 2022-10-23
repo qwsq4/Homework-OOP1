@@ -33,18 +33,10 @@ public class Car extends Transport {
         private final String insuranceNumber;
 
         public Insurance(int yearOfGetInsurance, int insuranceValidity, int insuranceCost, String insuranceNumber) {
-            if (yearOfGetInsurance > 0) {
-                this.yearOfGetInsurance = yearOfGetInsurance;
-            } else this.yearOfGetInsurance = 2000;
-            if (insuranceValidity > 0) {
-                this.insuranceValidity = insuranceValidity;
-            } else this.insuranceValidity = 1;
-            if (insuranceCost > 0) {
-                this.insuranceCost = insuranceCost;
-            } else this.insuranceCost = 7000;
-            if (insuranceNumber != null && !insuranceNumber.equals("")) {
-                this.insuranceNumber = insuranceNumber;
-            } else this.insuranceNumber = "default";
+            this.yearOfGetInsurance = checkZero(yearOfGetInsurance, 2000);
+            this.insuranceValidity = checkZero(insuranceValidity, 1);
+            this.insuranceCost = checkZero(insuranceCost, 3000);
+            this.insuranceNumber = checkNulity(insuranceNumber);
         }
 
         public int getYearOfGetInsurance() {
@@ -71,6 +63,18 @@ public class Car extends Transport {
                 System.out.println("Номер страховки некорректный!");
             }
         }
+
+        public String checkNulity(String value) {
+            if (value == null || value.equals("")) {
+                value = "default";
+            } return value;
+        }
+
+        int checkZero(int i, int r) {
+            if (i > 0) {
+                return i;
+            } else return r;
+        }
     }
 
     private double engineVolume;
@@ -90,9 +94,7 @@ public class Car extends Transport {
             this.engineVolume = engineVolume;
         } else this.engineVolume = 1.5;
 
-        if (seatsCount != 0) {
-            this.seatsCount = seatsCount;
-        } else this.seatsCount = 4;
+            this.seatsCount = checkZero(seatsCount, 4);
 
         if (typeOfTyre == "Летняя" || typeOfTyre == "Зимняя") {
             this.typeOfTyre = typeOfTyre;
@@ -141,7 +143,7 @@ public class Car extends Transport {
         System.out.println(getBrand() + " " + getModel() + ", год выпуска - " + getProductionYear() +  ", страна " +
                 "сборки - " + getProductionCountry() + ", цвет - " + getColor() + ", объем двигателя - " +
                 this.engineVolume + " л, коробка передач - " + this.transmission + ", тип кузова - " + this.typeOfFrame
-                + ", максимальная скорость - " + getMaxSpeed() + ", регистрационный номер - " +
+                + ", максимальная скорость - " + getMaxSpeed() + " км/ч, регистрационный номер - " +
                 this.licensePlateNumber + ", кол-во мест - " + this.seatsCount + ", " +
                 "тип резины - " + this.typeOfTyre + ". Страховка: срок действия страховки - " +
                 this.insurance.insuranceValidity + " год(лет), стоимость - " + this.insurance.insuranceCost + " руб., " +

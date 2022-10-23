@@ -7,9 +7,7 @@ public final class FlyingBird extends Birds{
 
     public FlyingBird(String family, String name, int age, String habitat, String movementType) {
         super(family, name, age, habitat);
-        if (movementType == null || movementType.equals("")) {
-            this.movementType = "полет";
-        } else this.movementType = movementType;
+        this.movementType = checkNulity(movementType, "полет");
     }
 
     public String getMovementType() {

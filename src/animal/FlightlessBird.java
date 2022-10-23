@@ -7,9 +7,7 @@ public final class FlightlessBird extends Birds{
 
     public FlightlessBird(String family, String name, int age, String habitat, String movementType) {
         super(family, name, age, habitat);
-        if (movementType == null || movementType.equals("")) {
-            this.movementType = "шаг";
-        } else this.movementType = movementType;
+        this.movementType = checkNulity(movementType, "шаг");
     }
 
     public String getMovementType() {

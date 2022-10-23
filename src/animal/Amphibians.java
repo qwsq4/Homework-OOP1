@@ -7,9 +7,7 @@ public final class Amphibians extends Animals{
 
     public Amphibians(String family, String name, int age, String habitat) {
         super(family, name, age);
-        if (habitat == null || habitat.equals("")) {
-            this.habitat = "около водоемов";
-        } else this.habitat = habitat;
+        this.habitat = checkNulity(habitat, "около водоемов");
     }
 
     public final String getHabitat() {
