@@ -1,10 +1,10 @@
 package animal;
 
-public abstract class Mammals extends Animals {
+public abstract class Mammal extends Animals {
     private final String habitat;
     private final int movementSpeed;
 
-    public Mammals(String family, String name, int age, String habitat, int movementSpeed) {
+    public Mammal(String family, String name, int age, String habitat, int movementSpeed) {
         super(family, name, age);
         this.habitat = checkNulity(habitat, "наземно-воздушная");
         if (movementSpeed > 0) {

@@ -2,10 +2,10 @@ package animal;
 
 import java.util.Objects;
 
-public final class Amphibians extends Animals{
+public final class Amphibian extends Animals{
     private final String habitat;
 
-    public Amphibians(String family, String name, int age, String habitat) {
+    public Amphibian(String family, String name, int age, String habitat) {
         super(family, name, age);
         this.habitat = checkNulity(habitat, "около водоемов");
     }
@@ -37,9 +37,9 @@ public final class Amphibians extends Animals{
         }
         if (o == null || getClass() != o.getClass()) {
             return false;
-        } else return Objects.equals(getFamily(), ((Amphibians) o).getFamily()) && Objects.equals(getName(),
-                ((Amphibians) o).getName()) && getAge() == ((Amphibians) o).getAge() && Objects.equals(habitat,
-                ((Amphibians) o).habitat);
+        } else return Objects.equals(getFamily(), ((Amphibian) o).getFamily()) && Objects.equals(getName(),
+                ((Amphibian) o).getName()) && getAge() == ((Amphibian) o).getAge() && Objects.equals(habitat,
+                ((Amphibian) o).habitat);
     }
 
     @Override

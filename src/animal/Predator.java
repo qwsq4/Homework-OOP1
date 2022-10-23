@@ -2,7 +2,7 @@ package animal;
 
 import java.util.Objects;
 
-public final class Predator extends Mammals{
+public final class Predator extends Mammal {
     private String foodType;
 
     public Predator(String family, String name, int age, String habitat, int movementSpeed, String foodType) {
