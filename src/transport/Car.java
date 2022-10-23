@@ -7,14 +7,8 @@ public class Car extends Transport {
         private final String keylessAccess;
 
         public CarKey(String remoteEngineStart, String keylessAccess) {
-            if (remoteEngineStart != null && !remoteEngineStart.equals("") && remoteEngineStart.equals("есть") ||
-                    remoteEngineStart.equals("нет")) {
-                this.remoteEngineStart = remoteEngineStart;
-            } else this.remoteEngineStart = "нет";
-            if (keylessAccess != null && !keylessAccess.equals("") && keylessAccess.equals("есть") ||
-                    keylessAccess.equals("нет")) {
-                this.keylessAccess = keylessAccess;
-            } else this.keylessAccess = "нет";
+            this.remoteEngineStart = checkNulity(remoteEngineStart);
+            this.keylessAccess = checkNulity(keylessAccess);
         }
 
         public String getRemoteEngineStart() {
@@ -22,6 +16,13 @@ public class Car extends Transport {
         }
         public String getKeylessAccess() {
             return keylessAccess;
+        }
+
+        public String checkNulity(String string) {
+            if (string != null && !string.equals("") && string.equals("есть") ||
+                    string.equals("нет")) {
+                return string;
+            }  else return "нет";
         }
     }
 
