@@ -151,17 +151,17 @@ public class Main {
             Truck truck3 = new Truck("Грузовик", "3", 16);
             Truck truck4 = new Truck("Грузовик", "4", 15.5);
 
-            Driver.DriverB driver1 = new Driver.DriverB("Иванов Иван Иванович", "есть", 2, lightVehicle4);
+            Driver<LightVehicle> driver1 = new Driver<>("Иванов Иван Иванович", "есть", 2, lightVehicle4);
             driver1.represent();
             driver1.getCar().setPitStop(2);
             driver1.getCar().pitStop();
 
-            Driver.DriverC driver2 = new Driver.DriverC("Семенов Семен Семенович", "", 5, truck1);
+            Driver<Truck> driver2 = new Driver<>("Семенов Семен Семенович", "", 5, truck1);
             driver2.represent();
             driver2.getCar().setBestLapTime(42.2);
             driver2.getCar().bestLapTime();
 
-            Driver.DriverD driver3 = new Driver.DriverD("", "есть", 3, bus3);
+            Driver<Bus> driver3 = new Driver<>("", "есть", 3, bus3);
             driver3.represent();
             driver3.getCar().maxSpeed();
     }
