@@ -1,9 +1,38 @@
 package transport;
 
 public class LightVehicle extends Car implements Competitor{
+    public enum BodyType {
+        SEDAN("Седан"),
+        TYPE_HATCHBACK("Хетчбек"),
+        TYPE_COUPE("Купе"),
+        STATION_WAGON("Универсал"),
+        SUV("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private final String btToStr;
+
+        BodyType(String btToStr) {
+            this.btToStr = btToStr;
+        }
+
+        public String getBtToStr() {
+            return btToStr;
+        }
+
+        public static void identifyBodyType(BodyType i) {
+            if (i != null) {
+                System.out.println("Тип кузова - " + i.getBtToStr());
+            } else System.out.println("Данных недостаточно");
+        }
+    }
+
     private double pitStop;
     private double bestLapTime;
     private double maxSpeed;
+    private BodyType bodyType;
     public LightVehicle(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
@@ -30,6 +59,14 @@ public class LightVehicle extends Car implements Competitor{
 
     public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
     }
 
     @Override

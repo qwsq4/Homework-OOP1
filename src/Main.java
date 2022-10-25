@@ -1,4 +1,5 @@
 import animal.*;
+import jdk.jshell.execution.LoaderDelegate;
 import transport.*;
 
 public class Main {
@@ -121,9 +122,9 @@ public class Main {
             FlightlessBird penguin = new FlightlessBird("Пингвин", "Павел", 2, "Новая Зеландия," +
                     " Австралия, Чили, Аргентина, Южная Африка, Антарктида, субарктические острова", "");
             System.out.println(penguin.toString());
-            FlightlessBird dodo = new FlightlessBird("Птица Додо", "-", 0, "предположительно" +
+            FlightlessBird dodo = new FlightlessBird("Птица Додо", " ", 0, "предположительно" +
                     " леса", "");
-            System.out.println("Вымерла - " + dodo.toString());
+            System.out.println("Вымерла: " + dodo.toString());
 
             FlyingBird seagull = new FlyingBird("Чайка", "Глаша", 2, "берега морей и океанов",
                     "");
@@ -164,5 +165,14 @@ public class Main {
             Driver<Bus> driver3 = new Driver<>("", "есть", 3, bus3);
             driver3.represent();
             driver3.getCar().maxSpeed();
+
+            System.out.println();
+
+            lightVehicle1.setBodyType(LightVehicle.BodyType.SEDAN);
+            LightVehicle.BodyType.identifyBodyType(lightVehicle1.getBodyType());
+            bus1.setCapacityNumber(90);
+            Bus.CapacityType.identifyCapacityType(bus1.getCapacityNumber());
+            truck1.setCapacityNumber(30);
+            Truck.LoadCapacityType.identifyCapacityType(truck1.getCapacityNumber());
     }
 }

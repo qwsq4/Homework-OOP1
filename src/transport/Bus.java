@@ -1,9 +1,51 @@
 package transport;
 
 public class Bus extends Car implements Competitor{
+    public enum CapacityType {
+        VERY_LOW(0, 10, "особо малая"),
+        LOW(10, 25, "малая"),
+        MIDDLE(25,50, "средняя"),
+        HIGH(50, 80, "большая"),
+        VERY_HIGH(80, 120, "особо большая");
+
+        private final int from;
+        private final int to;
+        private final String capToStr;
+
+        CapacityType(int from, int to, String capToStr) {
+            this.from = from;
+            this.to = to;
+            this.capToStr = capToStr;
+        }
+
+        public int getFrom() {
+            return from;
+        }
+
+        public int getTo() {
+            return to;
+        }
+
+        public String getCapToStr() {
+            return capToStr;
+        }
+
+        public static void identifyCapacityType(int i) {
+            String name = null;
+            for (CapacityType value : values()) {
+                if (i > value.getFrom() && i <= value.getTo()) {
+                    name = value.getCapToStr();
+                }
+            }
+            if (name != null) {
+                System.out.println("Вместимость автобуса - " + name);
+            } else System.out.println("Данных недостаточно");
+        }
+    }
     private double pitStop;
     private double bestLapTime;
     private double maxSpeed;
+    private int capacityNumber;
 //    public Bus(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
 //        super(brand, model, productionYear, productionCountry, color, maxSpeed);
 //    }
@@ -34,6 +76,14 @@ public class Bus extends Car implements Competitor{
 
     public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+
+    public int getCapacityNumber() {
+        return capacityNumber;
+    }
+
+    public void setCapacityNumber(int capacityNumber) {
+        this.capacityNumber = capacityNumber;
     }
 
     @Override
