@@ -1,7 +1,7 @@
 package transport;
 import java.time.LocalDate;
 
-public class Car extends Transport {
+public abstract class Car extends Transport {
 //    public static class CarKey {
 //        private final String remoteEngineStart;
 //        private final String keylessAccess;
@@ -78,6 +78,7 @@ public class Car extends Transport {
 //    }
 //
     private double engineVolume;
+    private String needCategory;
 //    private String transmission;
 //    private final String typeOfFrame;
 //    private String licensePlateNumber;
@@ -115,6 +116,9 @@ public class Car extends Transport {
 
     public double getEngineVolume() {
         return engineVolume;
+    }
+    public String getNeedCategory() {
+        return needCategory;
     }
 //    public String getTransmission() {
 //        return transmission;
@@ -165,10 +169,12 @@ public class Car extends Transport {
 //        System.out.println("Заправка бензином на заправке.");
 //    }
 
-    public void startRide() {
+    public static void startRide() {
         System.out.println("Завожу мотор");
         System.out.println("Начинаю движение");
     }
+
+    public abstract boolean needDiagnostics();
 
 //    public void replaceTypeOfTyre() {
 //        if (this.typeOfTyre.equals("Летняя")) {

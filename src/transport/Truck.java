@@ -44,6 +44,7 @@ public class Truck extends Car implements Competitor{
     private double bestLapTime;
     private double maxSpeed;
     private double capacityNumber;
+    private String needCategory = "C";
     public Truck(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
@@ -80,6 +81,10 @@ public class Truck extends Car implements Competitor{
         this.capacityNumber = capacityNumber;
     }
 
+    public String getNeedCategory() {
+        return needCategory;
+    }
+
     @Override
     public void pitStop() {
         if (Double.compare(pitStop, 0) > 0) {
@@ -99,5 +104,10 @@ public class Truck extends Car implements Competitor{
         if (Double.compare(maxSpeed, 0) > 0) {
             System.out.println(getBrand() + " " + getModel() + ": максимальная скорость - " + maxSpeed + " км/ч.");
         } else System.out.println(getBrand() + " " + getModel() + ": машина пока не учавствовала в заездах");
+    }
+
+    @Override
+    public boolean needDiagnostics() {
+        return true;
     }
 }

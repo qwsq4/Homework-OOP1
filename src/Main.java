@@ -1,6 +1,6 @@
 import animal.*;
-import jdk.jshell.execution.LoaderDelegate;
 import transport.*;
+import transport.Driver;
 
 public class Main {
     public static void bouquetCalculate(Flower[] flower){
@@ -23,6 +23,12 @@ public class Main {
             }
 
         System.out.println ("Состав букета - " + bouquetComposition + ". Стоимость букета - " + String.format("%.2f", bouquetCost) + " руб., срок стояния - " + bouquetLifeSpan + " дней");
+    }
+
+        public static void checkService(Driver<?>... drivers) {
+            for (int i = 0; i < drivers.length; i++) {
+                    drivers[i].serviceCar();
+            }
     }
 
     public static void main(String[] args){
@@ -157,14 +163,20 @@ public class Main {
             driver1.getCar().setPitStop(2);
             driver1.getCar().pitStop();
 
-            Driver<Truck> driver2 = new Driver<>("Семенов Семен Семенович", "", 5, truck1);
+            Driver<Truck> driver2 = new Driver<>("Семенов Семен Семенович", "", 5, truck2);
+            driver2.setCar(truck2);
             driver2.represent();
             driver2.getCar().setBestLapTime(42.2);
             driver2.getCar().bestLapTime();
 
             Driver<Bus> driver3 = new Driver<>("", "есть", 3, bus3);
+            driver3.setCar(bus4);
             driver3.represent();
             driver3.getCar().maxSpeed();
+
+            System.out.println();
+
+            checkService(driver1, driver2, driver3);
 
             System.out.println();
 
@@ -174,5 +186,7 @@ public class Main {
             Bus.CapacityType.identifyCapacityType(bus1.getCapacityNumber());
             truck1.setCapacityNumber(30);
             Truck.LoadCapacityType.identifyCapacityType(truck1.getCapacityNumber());
+
+            Data.checkData("sdп", "ркпв", "sfkj2");
     }
 }

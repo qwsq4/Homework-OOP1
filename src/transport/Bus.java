@@ -46,6 +46,7 @@ public class Bus extends Car implements Competitor{
     private double bestLapTime;
     private double maxSpeed;
     private int capacityNumber;
+    private final String needCategory = "D";
 //    public Bus(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
 //        super(brand, model, productionYear, productionCountry, color, maxSpeed);
 //    }
@@ -78,6 +79,10 @@ public class Bus extends Car implements Competitor{
         this.maxSpeed = maxSpeed;
     }
 
+    public String getNeedCategory() {
+        return needCategory;
+    }
+
     public int getCapacityNumber() {
         return capacityNumber;
     }
@@ -107,7 +112,12 @@ public class Bus extends Car implements Competitor{
         } else System.out.println(getBrand() + " " + getModel() + ": машина пока не учавствовала в заездах");
     }
 
-//    @Override
+    @Override
+    public boolean needDiagnostics() {
+        return false;
+    }
+
+    //    @Override
 //    public void refill() {
 //        System.out.println("Заправка бензином на заправке.");
 //    }

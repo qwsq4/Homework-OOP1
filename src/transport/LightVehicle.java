@@ -33,6 +33,7 @@ public class LightVehicle extends Car implements Competitor{
     private double bestLapTime;
     private double maxSpeed;
     private BodyType bodyType;
+    private final String needCategory = "B";
     public LightVehicle(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
@@ -69,6 +70,10 @@ public class LightVehicle extends Car implements Competitor{
         this.bodyType = bodyType;
     }
 
+    public String getNeedCategory() {
+        return needCategory;
+    }
+
     @Override
     public void pitStop() {
         if (Double.compare(pitStop, 0) > 0) {
@@ -88,5 +93,10 @@ public class LightVehicle extends Car implements Competitor{
         if (Double.compare(maxSpeed, 0) > 0) {
             System.out.println(getBrand() + " " + getModel() + ": максимальная скорость - " + maxSpeed + " км/ч.");
         } else System.out.println(getBrand() + " " + getModel() + ": машина пока не учавствовала в заездах");
+    }
+
+    @Override
+    public boolean needDiagnostics() {
+        return true;
     }
 }
