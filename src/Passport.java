@@ -5,25 +5,36 @@ import java.util.List;
 import java.util.Map;
 
 public class Passport {
-    private final int passportID;
+    private int passportID;
     private String firstName;
     private String lastName;
     private String middleName;
-    private final String dateOfBirth;
+    private String dateOfBirth;
     private final List<String> passportData = new ArrayList<>();
     private static final Map<Integer, List<String>> data = new HashMap<>();
 
     public Passport(int passportID, String firstName, String lastName, String middleName, String dateOfBirth) {
-        this.passportID = passportID;
-        this.firstName = checkNulity(firstName, "Не указано");
-        this.lastName = checkNulity(lastName, "Не указано");
-        this.middleName = middleName;
-        this.dateOfBirth = checkNulity(dateOfBirth, "Не указано");
-        this.passportData.add(firstName);
-        this.passportData.add(lastName);
-        this.passportData.add(middleName);
-        this.passportData.add(dateOfBirth);
-        data.put(passportID, passportData);
+        if (data.containsKey(passportID)) {
+            System.out.println(passportID + ": Данный номер паспорта уже есть в системе," +
+                    "  указанные ранее данные обновлены");
+            data.get(passportID).set(0, checkNulity(firstName, "Не указано"));
+            data.get(passportID).set(1, checkNulity(lastName, "Не указано"));
+            data.get(passportID).set(2, middleName);
+            if (!dateOfBirth.equals(data.get(passportID).get(3))) {
+                System.out.println(passportID + ": Дату рождения поменять нельзя");
+            }
+        } else {
+            this.passportID = passportID;
+            this.firstName = checkNulity(firstName, "Не указано");
+            this.lastName = checkNulity(lastName, "Не указано");
+            this.middleName = middleName;
+            this.dateOfBirth = checkNulity(dateOfBirth, "Не указано");
+            this.passportData.add(firstName);
+            this.passportData.add(lastName);
+            this.passportData.add(middleName);
+            this.passportData.add(dateOfBirth);
+            data.put(passportID, passportData);
+        }
     }
 
     public int getPassportID() {

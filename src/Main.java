@@ -338,7 +338,7 @@ public class Main {
 
             System.out.println();
 
-            System.out.println("Только четные числа:");
+            System.out.println("Только четные случайные числа:");
             for (int i = 0; i < intList.length; i++) {
                     if (intList[i] % 2 == 0 && intList[i] != 0) {
                         System.out.println(intList[i]);
@@ -356,7 +356,8 @@ public class Main {
         Passport passport2 = new Passport(2, "Имя 2", "Фамилия 2", "", "24.11.1998");
         Passport passport3 = new Passport(3, "Имя 3", "Фамилия 3", "", "24.11.2001");
         Passport passport4 = new Passport(4, "Имя 4", "Фамилия 4", "", "24.11.2005");
+        Passport passport5 = new Passport(4, "Имя 5", "Фамилия 7", "1", "24.11.2002");
 
-        Passport.findByID(2, 1, 3);
+        Passport.findByID(2, 1, 3, 4);
     }
 }
