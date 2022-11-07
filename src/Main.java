@@ -355,8 +355,8 @@ public class Main {
         Passport passport1 = new Passport(1, "Имя 1", "Фамилия 1", "", "24.11.2000");
         Passport passport2 = new Passport(2, "Имя 2", "Фамилия 2", "", "24.11.1998");
         Passport passport3 = new Passport(3, "Имя 3", "Фамилия 3", "", "24.11.2001");
-        Passport passport4 = new Passport(4, "Имя 4", "Фамилия 4", "", "24.11.2005");
-        Passport passport5 = new Passport(4, "Имя 5", "Фамилия 7", "1", "24.11.2002");
+        Passport passport4 = new Passport(4, "Имя 4", "Фамилия 4", "", "");
+        Passport passport5 = new Passport(4, "Имя 5", "Фамилия 7", "1", "24.11.2005");
 
         Passport.findByID(2, 1, 3, 4);
     }

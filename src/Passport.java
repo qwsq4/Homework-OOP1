@@ -20,9 +20,12 @@ public class Passport {
             data.get(passportID).set(0, checkNulity(firstName, "Не указано"));
             data.get(passportID).set(1, checkNulity(lastName, "Не указано"));
             data.get(passportID).set(2, middleName);
-            if (!dateOfBirth.equals(data.get(passportID).get(3))) {
+            if (checkNulity(data.get(passportID).get(3), "Не указано").equals("Не указано")) {
+                data.get(passportID).set(3, dateOfBirth);
+            } else if (!dateOfBirth.equals(data.get(passportID).get(3))) {
                 System.out.println(passportID + ": Дату рождения поменять нельзя");
             }
+
         } else {
             this.passportID = passportID;
             this.firstName = checkNulity(firstName, "Не указано");
