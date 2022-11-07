@@ -1,5 +1,5 @@
-import Cooking.ProductList;
-import Cooking.Recipe;
+import cooking.ProductList;
+import cooking.Recipe;
 import transport.*;
 import transport.Driver;
 
@@ -8,27 +8,20 @@ import java.util.*;
 public class Main {
 
     public static class Task {
-        private int x;
-        private int y;
+        private final int x;
+        private final int y;
 
         public Task(int x, int y) {
-                setX(x);
-                setY(y);
+            this.x = x;
+            this.y = y;
         }
+
         public int getX() {
             return x;
         }
 
-        public void setX(int x) {
-            this.x = x;
-        }
-
         public int getY() {
             return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
         }
 
         @Override
@@ -78,6 +71,7 @@ public class Main {
             }
         }
     }
+
 //    public static void bouquetCalculate(Flower[] flower){
 //            double bouquetCost = 0;
 //            for (Flower value : flower) {
@@ -100,10 +94,21 @@ public class Main {
 //        System.out.println ("Состав букета - " + bouquetComposition + ". Стоимость букета - " + String.format("%.2f", bouquetCost) + " руб., срок стояния - " + bouquetLifeSpan + " дней");
 //    }
 
+
         public static void checkService(Car... cars) {
                 for (Car car : cars) {
                         car.serviceCar();
                 }
+    }
+
+    public static void addToMap(Map<String, Integer> map, String key, int value) {
+        if (!map.containsKey(key)) {
+            map.put(key, value);
+        } else {
+            if (map.get(key).equals(value)) {
+                throw new RuntimeException("Данное значение уже есть в коллекции");
+            } else map.replace(key, map.get(key), value);
+        }
     }
 
     public static void main(String[] args){
@@ -312,8 +317,26 @@ public class Main {
             ProductList.Product butter = new ProductList.Product("Масло сливочное", 100, 0.5);
             ProductList.Product egg = new ProductList.Product("Яйцо куриное", 100, 1);
 
-            ProductList productList1 = new ProductList(banana, milk, sugar, iceCream);
-            ProductList productList2 = new ProductList(banana, flour, sugar, milk, butter, egg);
+            ProductList productList1 = new ProductList();
+            try {
+            productList1.addProducts(banana, 2);
+            productList1.addProducts(milk, 1);
+            productList1.addProducts(sugar, 1);
+            productList1.addProducts(iceCream, 1);
+            } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            }
+
+            ProductList productList2 = new ProductList();
+        try {
+            productList2.addProducts(banana, 4);
+            productList2.addProducts(flour, 1);
+            productList2.addProducts(sugar, 2);
+            productList2.addProducts(milk, 2);
+            productList2.addProducts(egg, 3);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
 
             Recipe cocktail = new Recipe("Молочный коктейль", productList1);
             cocktail.represent();
@@ -359,5 +382,100 @@ public class Main {
         Passport passport5 = new Passport(4, "Имя 5", "Фамилия 7", "1", "24.11.2005");
 
         Passport.findByID(2, 1, 3, 4, 7);
+
+        System.out.println();
+
+        Phone phone1 = new Phone("Имя 1", "Номер 1");
+        Phone phone2 = new Phone("Имя 2", "Номер 2");
+        Phone phone3 = new Phone("Имя 3", "Номер 3");
+        Phone phone4 = new Phone("Имя 4", "Номер 4");
+        Phone phone5 = new Phone("Имя 5", "Номер 5");
+        Phone phone6 = new Phone("Имя 6", "Номер 6");
+        Phone phone7 = new Phone("Имя 7", "Номер 7");
+        Phone phone8 = new Phone("Имя 8", "Номер 8");
+        Phone phone9 = new Phone("Имя 9", "Номер 9");
+        Phone phone10 = new Phone("Имя 10", "Номер 10");
+        Phone phone11 = new Phone("Имя 11", "Номер 11");
+        Phone phone12 = new Phone("Имя 12", "Номер 12");
+        Phone phone13 = new Phone("Имя 13", "Номер 13");
+        Phone phone14 = new Phone("Имя 14", "Номер 14");
+        Phone phone15 = new Phone("Имя 15", "Номер 15");
+        Phone phone16 = new Phone("Имя 16", "Номер 16");
+        Phone phone17 = new Phone("Имя 17", "Номер 17");
+        Phone phone18 = new Phone("Имя 18", "Номер 18");
+        Phone phone19 = new Phone("Имя 19", "Номер 19");
+        Phone phone20 = new Phone("Имя 20", "Номер 20");
+
+        System.out.println(Phone.getPhoneBook().values());
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("str1", 1);
+        map.put("str2", 2);
+        map.put("str3", 3);
+        map.put("str4", 4);
+        map.put("str5", 5);
+
+        System.out.println();
+
+        addToMap(map, "str1", 10);
+        System.out.println(map.values());
+
+        System.out.println();
+
+        Map<String, List<Integer>> map1 = new HashMap<>();
+        List<Integer> intList1 = new ArrayList<>();
+        while (intList1.size() < 3) {
+            intList1.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        map1.put("str1", intList1);
+
+        List<Integer> intList2 = new ArrayList<>();
+        while (intList2.size() < 3) {
+            intList2.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        map1.put("str2", intList2);
+
+        List<Integer> intList3 = new ArrayList<>();
+        while (intList3.size() < 3) {
+            intList3.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        map1.put("str3", intList3);
+
+        List<Integer> intList4 = new ArrayList<>();
+        while (intList4.size() < 3) {
+            intList4.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        map1.put("str4", intList4);
+
+        List<Integer> intList5 = new ArrayList<>();
+        while (intList5.size() < 3) {
+            intList5.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        map1.put("str5", intList5);
+
+        System.out.println(map1.entrySet());
+
+        Map<String, Integer> map2 = new HashMap<>();
+        for (String key : map1.keySet()) {
+            map2.put(key, map1.get(key).get(0) + map1.get(key).get(1) + map1.get(key).get(2));
+        }
+
+        System.out.println(map2.entrySet());
+
+        System.out.println();
+
+        Map<String, Integer> map3 = new LinkedHashMap<>();
+        map3.put("str1", 1);
+        map3.put("str2", 2);
+        map3.put("str3", 3);
+        map3.put("str4", 4);
+        map3.put("str5", 5);
+        map3.put("str6", 6);
+        map3.put("str7", 7);
+        map3.put("str8", 8);
+        map3.put("str9", 9);
+        map3.put("str10", 10);
+
+        System.out.println(map3.entrySet());
     }
 }

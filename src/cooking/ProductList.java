@@ -1,7 +1,7 @@
-package Cooking;
+package cooking;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.security.Key;
+import java.util.*;
 
 public class ProductList {
 
@@ -55,49 +55,42 @@ public class ProductList {
         }
     }
 
-    private Set<Product> productList = new HashSet<>();
+    private final Map<Product, Integer> productList = new HashMap<>();
 
-    public ProductList(Product... products) {
-        try {
-            addProducts(products);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
+    public ProductList() {
     }
 
-    public void addProducts(Product... products) {
-        for (Product product : products) {
+    public void addProducts(Product product, int amount) {
             if (product.getName().equals("Не указано") || product.getWeight() == 0.0 || product.getCost() == 0.0) {
                 throw new RuntimeException("Заполните карточку товара полностью!");
-            } else if (productList.contains(product)) {
+            } else if (productList.containsKey(product)) {
                 throw new RuntimeException("Данный товар уже есть в корзине");
-            } else productList.add(product);
-        }
+            } else productList.put(product, checkZero(amount, 1));
     }
 
     public void checkProduct(Product product) {
-        if (productList.contains(product)) {
+        if (productList.containsKey(product)) {
             System.out.println("Данный товар уже куплен");
         } else System.out.println("Данный товар еще не куплен");
     }
 
     public void deleteProduct(Product product) {
-        if (productList.contains(product)) {
+        if (productList.containsKey(product)) {
             productList.remove(product);
         } else System.out.println("Данного продукта нет в списке");
     }
 
     public double calculateSummaryCost() {
         double summaryCost = 0D;
-        for (Product product : productList) {
-            summaryCost = summaryCost + product.getCost();
+        for (Product product : productList.keySet()) {
+            summaryCost = summaryCost + (product.getCost() * productList.get(product));
         }
         return summaryCost;
     }
 
     public void represent() {
         System.out.println("Список продуктов: ");
-        for (Product product : productList) {
+        for (Product product : productList.keySet()) {
             System.out.println(product.getName());
         }
     }
@@ -112,6 +105,12 @@ public class ProductList {
 
     public static double checkZero(double value, double replace) {
         if (value > 0.0) {
+            return value;
+        } else return replace;
+    }
+
+    public static int checkZero(int value, int replace) {
+        if (value > 0) {
             return value;
         } else return replace;
     }

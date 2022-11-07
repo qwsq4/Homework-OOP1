@@ -86,10 +86,4 @@ public class Passport {
             value = replace;
         } return value;
     }
-
-    public static int checkZero(int value, int replace) {
-        if (value > 0) {
-            return value;
-        } else return replace;
-    }
 }
