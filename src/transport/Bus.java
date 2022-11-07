@@ -47,12 +47,14 @@ public class Bus extends Car implements Competitor{
     private double maxSpeed;
     private int capacityNumber;
     private final String needCategory = "D";
+    private Driver<Bus> driver;
 //    public Bus(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
 //        super(brand, model, productionYear, productionCountry, color, maxSpeed);
 //    }
 
     public Bus(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
+        allCompetitorCars.add(this);
     }
 
     public double getPitStop() {

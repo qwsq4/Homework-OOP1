@@ -1,7 +1,42 @@
 package transport;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Car extends Transport {
+    public static class Sponsor{
+    private String name;
+    private int supportAmount;
+
+    public Sponsor(String name, int supportAmount) {
+        this.name = checkNulity(name, "Информация не указана");
+        this.supportAmount = checkZero(supportAmount, 10000);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = checkNulity(name, "Информация не указана");
+    }
+
+    public int getSupportAmount() {
+        return supportAmount;
+    }
+
+    public void setSupportAmount(int supportAmount) {
+        this.supportAmount = checkZero(supportAmount, 10000);
+    }
+
+    public void sponsorRace(Car... cars) {
+        for (Car car : cars) {
+            car.getSponsorsList().add(this);
+        }
+    }
+}
+
 //    public static class CarKey {
 //        private final String remoteEngineStart;
 //        private final String keylessAccess;
@@ -77,8 +112,13 @@ public abstract class Car extends Transport {
 //        }
 //    }
 //
+
     private double engineVolume;
     private String needCategory;
+    private Driver<?> driver;
+    private Set<Sponsor> sponsorsList = new HashSet<>();
+    static Set<Car> allCompetitorCars = new HashSet<>();
+    private Set<Mechanic> mechanicsList = new HashSet<>();
 //    private String transmission;
 //    private final String typeOfFrame;
 //    private String licensePlateNumber;
@@ -117,10 +157,48 @@ public abstract class Car extends Transport {
     public double getEngineVolume() {
         return engineVolume;
     }
+
     public String getNeedCategory() {
         return needCategory;
     }
-//    public String getTransmission() {
+
+    public Driver<?> getDriver() {
+        return driver;
+    }
+
+    void setDriver(Driver<?> driver) {
+        this.driver = driver;
+    }
+
+    public Set<Sponsor> getSponsorsList() {
+        return sponsorsList;
+    }
+
+    public void setSponsorsList(Sponsor... sponsors) {
+        for (Sponsor sponsor : sponsors) {
+            sponsorsList.add(sponsor);
+        }
+    }
+
+    public Set<Mechanic> getMechanicsList() {
+        return mechanicsList;
+    }
+
+    public void setMechanicsList(Mechanic... mechanics) {
+        for (Mechanic mechanic : mechanics) {
+            mechanicsList.add(mechanic);
+            mechanic.setServicedCars(this);
+        }
+    }
+
+    public static void getAllCompetitorCars() {
+        System.out.println("Все автомобили учавствующие в забеге");
+        for (Car car : allCompetitorCars) {
+            System.out.println(car.getBrand() + " " + car.getModel());
+        }
+    }
+
+    //    public String getTransmission() {
 //        return transmission;
 //    }
 //    public String getTypeOfFrame() {
@@ -175,6 +253,57 @@ public abstract class Car extends Transport {
     }
 
     public abstract boolean needDiagnostics();
+
+    public void showSponsors() {
+        System.out.println("  Автомобиль: " + getBrand() + " " + getModel() + ", спонсоры: ");
+        for (Sponsor sponsor : sponsorsList) {
+            System.out.println(sponsor.getName() + ", сумма поддержки - " +
+                    sponsor.getSupportAmount() + " руб.");
+        }
+    }
+
+    private void service() {;
+        if (this.driver != null) {
+            if (!getDriver().getCategory().equals(this.getNeedCategory()) || getDriver().getCategory().equals("нет")) {
+                throw new RuntimeException("Водитель " + getDriver().getFullName() + ": категория прав не указана или не соответствует необходимой для данного транспорта");
+            } else if (this.needDiagnostics()) {
+                System.out.println(this.getBrand() + " " + this.getModel() + ": выполняю диагностику");
+                System.out.println(this.getBrand() + " " + this.getModel() + ": диагностика завершена");
+                System.out.println();
+            } else {
+                System.out.println(this.getBrand() + " " + this.getModel() + ": данный вид транспорта в диагностике не нуждается");
+                System.out.println();
+            }
+        } else throw new RuntimeException("Водитель не найден");
+    }
+
+    public void serviceCar() {
+        try {
+            service();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
+    }
+
+    private Driver checkDriver(Driver<?> driver) {
+        if (this != driver.getCar()) {
+            return null;
+        }
+        return driver;
+    }
+
+    public void represent() {
+        System.out.print("  " + getBrand() + " " + getModel() + ": водитель - " + getDriver().getFullName() + ". Cпонсоры: ");
+        for (Sponsor sponsor : sponsorsList) {
+                System.out.println(sponsor.getName());
+            }
+        System.out.println("  Механики");
+        for (Mechanic mechanic : mechanicsList) {
+                System.out.print(mechanic.getName());
+            }
+        System.out.println();
+    }
 
 //    public void replaceTypeOfTyre() {
 //        if (this.typeOfTyre.equals("Летняя")) {

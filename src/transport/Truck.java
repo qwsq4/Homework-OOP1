@@ -45,8 +45,10 @@ public class Truck extends Car implements Competitor{
     private double maxSpeed;
     private double capacityNumber;
     private String needCategory = "C";
+    private Driver<Truck> driver;
     public Truck(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
+        allCompetitorCars.add(this);
     }
 
     public double getPitStop() {
@@ -84,6 +86,7 @@ public class Truck extends Car implements Competitor{
     public String getNeedCategory() {
         return needCategory;
     }
+
 
     @Override
     public void pitStop() {

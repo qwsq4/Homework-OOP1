@@ -33,9 +33,11 @@ public class LightVehicle extends Car implements Competitor{
     private double bestLapTime;
     private double maxSpeed;
     private BodyType bodyType;
+    private Driver<LightVehicle> driver;
     private final String needCategory = "B";
     public LightVehicle(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
+        allCompetitorCars.add(this);
     }
 
     public double getPitStop() {

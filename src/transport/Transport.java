@@ -58,15 +58,15 @@ public abstract class Transport {
 
 //    public abstract void refill();
 
-    public String checkNulity(String value, String replace) {
+    public static String checkNulity(String value, String replace) {
         if (value == null || value.equals("")) {
             value = replace;
         } return value;
     }
 
-    int checkZero(int i, int r) {
-        if (i > 0) {
-            return i;
-        } else return r;
+    public static int checkZero(int value, int replace) {
+        if (value > 0) {
+            return value;
+        } else return replace;
     }
 }
