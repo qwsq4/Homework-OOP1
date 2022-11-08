@@ -48,7 +48,7 @@ public class Main {
         }
     }
 
-    public static class TaskList { 
+    public static class TaskList {
         private static final Set<Task> taskList = new HashSet<>(15);
 
         public TaskList() {
@@ -95,10 +95,10 @@ public class Main {
 //    }
 
 
-        public static void checkService(Car... cars) {
-                for (Car car : cars) {
-                        car.serviceCar();
-                }
+    public static void checkService(Car... cars) {
+        for (Car car : cars) {
+            car.serviceCar();
+        }
     }
 
     public static void addToMap(Map<String, Integer> map, String key, int value) {
@@ -111,8 +111,15 @@ public class Main {
         }
     }
 
-    public static void main(String[] args){
-//            Human maxim = new Human(1987, "Максим", "Минск", "Бренд-менеджер");
+    public static List<Integer> generateRandomIntList() {
+        List<Integer> intList = new ArrayList<>();
+        while (intList.size() < 3) {
+            intList.add(new Random().ints(0, 1000).findFirst().getAsInt());
+        }
+        return intList;
+    }
+    public static void unusedCode() {
+        //            Human maxim = new Human(1987, "Максим", "Минск", "Бренд-менеджер");
 //            maxim.represent();
 //            Human anya = new Human(1993, "Аня", "Москва", "Методист образовательных программ");
 //            anya.represent();
@@ -222,112 +229,116 @@ public class Main {
 //            System.out.println(falcon.toString());
 //
 //            System.out.println();
+    }
+    public static void cars() {
+        LightVehicle lightVehicle1 = new LightVehicle("Легковая машина", "1", 2);
+        LightVehicle lightVehicle2 = new LightVehicle("Легковая машина", "2", 1.5);
+        LightVehicle lightVehicle3 = new LightVehicle("Легковая машина", "3", 3);
+        LightVehicle lightVehicle4 = new LightVehicle("Легковая машина", "4", 2.5);
 
-            LightVehicle lightVehicle1 = new LightVehicle("Легковая машина", "1", 2);
-            LightVehicle lightVehicle2 = new LightVehicle("Легковая машина", "2", 1.5);
-            LightVehicle lightVehicle3 = new LightVehicle("Легковая машина", "3", 3);
-            LightVehicle lightVehicle4 = new LightVehicle("Легковая машина", "4", 2.5);
+        Bus bus1 = new Bus("Автобус", "1", 6.5);
+        Bus bus2 = new Bus("Автобус", "2", 5);
+        Bus bus3 = new Bus("Автобус", "3", 7);
+        Bus bus4 = new Bus("Автобус", "4", 5.5);
 
-            Bus bus1 = new Bus("Автобус", "1", 6.5);
-            Bus bus2 = new Bus("Автобус", "2", 5);
-            Bus bus3 = new Bus("Автобус", "3", 7);
-            Bus bus4 = new Bus("Автобус", "4", 5.5);
+        Truck truck1 = new Truck("Грузовик", "1", 15);
+        Truck truck2 = new Truck("Грузовик", "2", 14);
+        Truck truck3 = new Truck("Грузовик", "3", 16);
+        Truck truck4 = new Truck("Грузовик", "4", 15.5);
 
-            Truck truck1 = new Truck("Грузовик", "1", 15);
-            Truck truck2 = new Truck("Грузовик", "2", 14);
-            Truck truck3 = new Truck("Грузовик", "3", 16);
-            Truck truck4 = new Truck("Грузовик", "4", 15.5);
+        Driver<LightVehicle> driver1 = new Driver<>("Водитель 1", "есть", 2, lightVehicle4);
+        driver1.represent();
+        driver1.getCar().setPitStop(2);
+        driver1.getCar().pitStop();
 
-            Driver<LightVehicle> driver1 = new Driver<>("Водитель 1", "есть", 2, lightVehicle4);
-            driver1.represent();
-            driver1.getCar().setPitStop(2);
-            driver1.getCar().pitStop();
+        Driver<Truck> driver2 = new Driver<>("Водитель 2", "", 5, truck2);
+        driver2.setCar(truck2);
+        driver2.represent();
+        driver2.getCar().setBestLapTime(42.2);
+        driver2.getCar().bestLapTime();
 
-            Driver<Truck> driver2 = new Driver<>("Водитель 2", "", 5, truck2);
-            driver2.setCar(truck2);
-            driver2.represent();
-            driver2.getCar().setBestLapTime(42.2);
-            driver2.getCar().bestLapTime();
+        Driver<Bus> driver3 = new Driver<>("", "есть", 3, bus3);
+        driver3.setCar(bus4);
+        driver3.represent();
+        driver3.getCar().maxSpeed();
 
-            Driver<Bus> driver3 = new Driver<>("", "есть", 3, bus3);
-            driver3.setCar(bus4);
-            driver3.represent();
-            driver3.getCar().maxSpeed();
+        System.out.println();
 
-            System.out.println();
+        checkService(lightVehicle4, truck2, bus3);
 
-            checkService(lightVehicle4, truck2, bus3);
+        System.out.println();
 
-            System.out.println();
+        lightVehicle1.setBodyType(LightVehicle.BodyType.SEDAN);
+        LightVehicle.BodyType.identifyBodyType(lightVehicle1.getBodyType());
+        bus1.setCapacityNumber(90);
+        Bus.CapacityType.identifyCapacityType(bus1.getCapacityNumber());
+        truck1.setCapacityNumber(30);
+        Truck.LoadCapacityType.identifyCapacityType(truck1.getCapacityNumber());
 
-            lightVehicle1.setBodyType(LightVehicle.BodyType.SEDAN);
-            LightVehicle.BodyType.identifyBodyType(lightVehicle1.getBodyType());
-            bus1.setCapacityNumber(90);
-            Bus.CapacityType.identifyCapacityType(bus1.getCapacityNumber());
-            truck1.setCapacityNumber(30);
-            Truck.LoadCapacityType.identifyCapacityType(truck1.getCapacityNumber());
+        System.out.println();
 
-            System.out.println();
+        Data.checkData("sdп", "ркпв", "sfkj2");
 
-            Data.checkData("sdп", "ркпв", "sfkj2");
+        System.out.println();
 
-            System.out.println();
+        Car.Sponsor sponsor1 = new Car.Sponsor("Спонсор 1", 50000);
+        Car.Sponsor sponsor2 = new Car.Sponsor("Спонсор 2", 100000);
+        Car.Sponsor sponsor3 = new Car.Sponsor("Спонсор 3", 70000);
+        Mechanic<LightVehicle> mechanic1 = new Mechanic<>("Механик 1", "Компания 1");
+        Mechanic<Bus> mechanic2 = new Mechanic<>("Механик 2", "Компания 2");
+        Mechanic<Truck> mechanic3 = new Mechanic<>("Механик 3", "Компания 3");
+        Mechanic<Car> mechanic4 = new Mechanic<>("Механик 4", "Компания 4");
+        lightVehicle4.setMechanicsList(mechanic1, mechanic4);
+        bus3.setMechanicsList(mechanic2, mechanic4);
+        truck2.setMechanicsList(mechanic3, mechanic4);
+        sponsor1.sponsorRace(lightVehicle4, bus3, truck1);
+        sponsor2.sponsorRace(lightVehicle4, bus2, truck2);
+        sponsor3.sponsorRace(lightVehicle2, bus4, truck2);
+        lightVehicle4.represent();
+        bus3.represent();
+        truck2.represent();
 
-            Car.Sponsor sponsor1 = new Car.Sponsor("Спонсор 1", 50000);
-            Car.Sponsor sponsor2 = new Car.Sponsor("Спонсор 2", 100000);
-            Car.Sponsor sponsor3 = new Car.Sponsor("Спонсор 3", 70000);
-            Mechanic<LightVehicle> mechanic1 = new Mechanic<>("Механик 1", "Компания 1");
-            Mechanic<Bus> mechanic2 = new Mechanic<>("Механик 2", "Компания 2");
-            Mechanic<Truck> mechanic3 = new Mechanic<>("Механик 3", "Компания 3");
-            Mechanic<Car> mechanic4 = new Mechanic<>("Механик 4", "Компания 4");
-            lightVehicle4.setMechanicsList(mechanic1, mechanic4);
-            bus3.setMechanicsList(mechanic2, mechanic4);
-            truck2.setMechanicsList(mechanic3, mechanic4);
-            sponsor1.sponsorRace(lightVehicle4, bus3, truck1);
-            sponsor2.sponsorRace(lightVehicle4, bus2, truck2);
-            sponsor3.sponsorRace(lightVehicle2, bus4, truck2);
-            lightVehicle4.represent();
-            bus3.represent();
-            truck2.represent();
+        System.out.println();
 
+        Car.getAllCompetitorCars();
 
-            System.out.println();
+        System.out.println();
+    }
 
-            Car.getAllCompetitorCars();
+    public static void market() {
+        MarketQueue.addToQueue("Покупатель 1", "Покупатель 2", "Покупатель 3", "Покупатель 4",
+                "Покупатель 5", "Покупатель 6", "Покупатель 7", "Покупатель 8", "Покупатель 9", "Покупатель 10",
+                "Покупатель 11", "Покупатель 12", "Покупатель 13", "Покупатель 14");
 
-            System.out.println();
+        MarketQueue.deleteRandomBuyer();
+        MarketQueue.deleteRandomBuyer();
+        MarketQueue.deleteRandomBuyer();
+        MarketQueue.getQueues();
 
-            MarketQueue.addToQueue("Покупатель 1", "Покупатель 2", "Покупатель 3", "Покупатель 4",
-                    "Покупатель 5", "Покупатель 6", "Покупатель 7", "Покупатель 8", "Покупатель 9", "Покупатель 10",
-                    "Покупатель 11", "Покупатель 12", "Покупатель 13", "Покупатель 14");
+        System.out.println();
+    }
 
-            MarketQueue.deleteRandomBuyer();
-            MarketQueue.deleteRandomBuyer();
-            MarketQueue.deleteRandomBuyer();
-            MarketQueue.getQueues();
+    public static void products() {
+        ProductList.Product banana = new ProductList.Product("Бананы", 50, 1);
+        ProductList.Product milk = new ProductList.Product("Молоко", 100, 1);
+        ProductList.Product sugar = new ProductList.Product("Сахар", 70, 0.3);
+        ProductList.Product iceCream = new ProductList.Product("Мороженое", 130, 0.5);
 
-            System.out.println();
+        ProductList.Product flour = new ProductList.Product("Мука пшеничная В/С", 50, 1);
+        ProductList.Product butter = new ProductList.Product("Масло сливочное", 100, 0.5);
+        ProductList.Product egg = new ProductList.Product("Яйцо куриное", 100, 1);
 
-            ProductList.Product banana = new ProductList.Product("Бананы", 50, 1);
-            ProductList.Product milk = new ProductList.Product("Молоко", 100, 1);
-            ProductList.Product sugar = new ProductList.Product("Сахар", 70, 0.3);
-            ProductList.Product iceCream = new ProductList.Product("Мороженое", 130, 0.5);
-
-            ProductList.Product flour = new ProductList.Product("Мука пшеничная В/С", 50, 1);
-            ProductList.Product butter = new ProductList.Product("Масло сливочное", 100, 0.5);
-            ProductList.Product egg = new ProductList.Product("Яйцо куриное", 100, 1);
-
-            ProductList productList1 = new ProductList();
-            try {
+        ProductList productList1 = new ProductList();
+        try {
             productList1.addProducts(banana, 2);
             productList1.addProducts(milk, 1);
             productList1.addProducts(sugar, 1);
             productList1.addProducts(iceCream, 1);
-            } catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            }
+        }
 
-            ProductList productList2 = new ProductList();
+        ProductList productList2 = new ProductList();
         try {
             productList2.addProducts(banana, 4);
             productList2.addProducts(flour, 1);
@@ -338,43 +349,49 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-            Recipe cocktail = new Recipe("Молочный коктейль", productList1);
-            cocktail.represent();
+        Recipe cocktail = new Recipe("Молочный коктейль", productList1);
+        cocktail.represent();
 
-            System.out.println();
+        System.out.println();
 
-            Recipe bananaPie = new Recipe("Банановый пирог", productList2);
-            bananaPie.represent();
+        Recipe bananaPie = new Recipe("Банановый пирог", productList2);
+        bananaPie.represent();
 
-            Recipe.RecipeBook recipeBook1 = new Recipe.RecipeBook(cocktail, bananaPie);
-            recipeBook1.represent();
+        Recipe.RecipeBook recipeBook1 = new Recipe.RecipeBook(cocktail, bananaPie);
+        recipeBook1.represent();
 
-            System.out.println();
+        System.out.println();
+    }
 
-            int[] intList = new int[20];
+    public static void randomNumbers() {
+        int[] intList = new int[20];
 
-            System.out.println("Все случайные целые числа:");
-            for (int i = 0; i < 20; i++) {
-                    intList[i] = new Random().nextInt();
-                    System.out.println(intList[i]);
-            }
+        System.out.println("Все случайные целые числа:");
+        for (int i = 0; i < 20; i++) {
+            intList[i] = new Random().nextInt();
+            System.out.println(intList[i]);
+        }
 
-            System.out.println();
+        System.out.println();
 
-            System.out.println("Только четные случайные числа:");
-            for (int i = 0; i < intList.length; i++) {
-                    if (intList[i] % 2 == 0 && intList[i] != 0) {
-                        System.out.println(intList[i]);
-                    } else intList[i] = 0;
-            }
+        System.out.println("Только четные случайные числа:");
+        for (int i = 0; i < intList.length; i++) {
+            if (intList[i] % 2 == 0 && intList[i] != 0) {
+                System.out.println(intList[i]);
+            } else intList[i] = 0;
+        }
 
-            System.out.println();
+        System.out.println();
+    }
 
+    public static void tasks() {
         TaskList taskList1 = new TaskList();
         taskList1.getTaskList();
 
         System.out.println();
+    }
 
+    public static void passport() {
         Passport passport1 = new Passport(1, "Имя 1", "Фамилия 1", "", "24.11.2000");
         Passport passport2 = new Passport(2, "Имя 2", "Фамилия 2", "", "24.11.1998");
         Passport passport3 = new Passport(3, "Имя 3", "Фамилия 3", "", "24.11.2001");
@@ -384,7 +401,9 @@ public class Main {
         Passport.findByID(2, 1, 3, 4, 7);
 
         System.out.println();
+    }
 
+    public static void phoneBook() {
         Phone phone1 = new Phone("Имя 1", "Номер 1");
         Phone phone2 = new Phone("Имя 2", "Номер 2");
         Phone phone3 = new Phone("Имя 3", "Номер 3");
@@ -407,7 +426,10 @@ public class Main {
         Phone phone20 = new Phone("Имя 20", "Номер 20");
 
         System.out.println(Phone.getPhoneBook().values());
+        System.out.println();
+    }
 
+    public static void maps() {
         Map<String, Integer> map = new HashMap<>();
         map.put("str1", 1);
         map.put("str2", 2);
@@ -423,34 +445,19 @@ public class Main {
         System.out.println();
 
         Map<String, List<Integer>> map1 = new HashMap<>();
-        List<Integer> intList1 = new ArrayList<>();
-        while (intList1.size() < 3) {
-            intList1.add(new Random().ints(0, 1000).findFirst().getAsInt());
-        }
+        List<Integer> intList1 = generateRandomIntList();
         map1.put("str1", intList1);
 
-        List<Integer> intList2 = new ArrayList<>();
-        while (intList2.size() < 3) {
-            intList2.add(new Random().ints(0, 1000).findFirst().getAsInt());
-        }
+        List<Integer> intList2 = generateRandomIntList();
         map1.put("str2", intList2);
 
-        List<Integer> intList3 = new ArrayList<>();
-        while (intList3.size() < 3) {
-            intList3.add(new Random().ints(0, 1000).findFirst().getAsInt());
-        }
+        List<Integer> intList3 = generateRandomIntList();
         map1.put("str3", intList3);
 
-        List<Integer> intList4 = new ArrayList<>();
-        while (intList4.size() < 3) {
-            intList4.add(new Random().ints(0, 1000).findFirst().getAsInt());
-        }
+        List<Integer> intList4 = generateRandomIntList();
         map1.put("str4", intList4);
 
-        List<Integer> intList5 = new ArrayList<>();
-        while (intList5.size() < 3) {
-            intList5.add(new Random().ints(0, 1000).findFirst().getAsInt());
-        }
+        List<Integer> intList5 = generateRandomIntList();
         map1.put("str5", intList5);
 
         System.out.println(map1.entrySet());
@@ -477,5 +484,16 @@ public class Main {
         map3.put("str10", 10);
 
         System.out.println(map3.entrySet());
+    }
+
+    public static void main(String[] args) {
+        cars();
+        market();
+        products();
+        randomNumbers();
+        tasks();
+        passport();
+        phoneBook();
+        maps();
     }
 }
