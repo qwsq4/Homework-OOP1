@@ -72,6 +72,16 @@ public class Passport {
         return dateOfBirth;
     }
 
+    @Override
+    public String toString() {
+        return "Passport" +
+                "Номер паспорта - " + passportID +
+                ", Имя - " + firstName +
+                ", Фамилия - " + lastName +
+                ", Отчество(если есть) - " + middleName +
+                ", Дата рождения - " + dateOfBirth;
+    }
+
     public static void findByID(int... passportIDs) {
         for (int passportID : passportIDs) {
             if (data.containsKey(passportID)) {

@@ -53,6 +53,11 @@ public class ProductList {
             int hashCost = (int) cost;
             return (name.length() * hashWeight * hashCost) * 31;
         }
+
+        @Override
+        public String toString() {
+            return name + ", цена - " + cost + ", вес - " + weight;
+        }
     }
 
     private Set<Product> productList = new HashSet<>();
@@ -93,6 +98,11 @@ public class ProductList {
             summaryCost = summaryCost + product.getCost();
         }
         return summaryCost;
+    }
+
+    @Override
+    public String toString() {
+        return "Списко необходимых продуктов - " + productList;
     }
 
     public void represent() {

@@ -17,9 +17,10 @@ public abstract class Transport {
 //       this.maxSpeed = checkZero(maxSpeed, 100);
 //    }
 
+
     public Transport(String brand, String model) {
-        this.brand = checkNulity(brand, "Бренд не указан");
-        this.model = checkNulity(model, "Модель не указана");
+        this.brand = checkNulity(brand, "Не указано");
+        this.model = checkNulity(model, "Не указано");
     }
 
     public String getBrand() {

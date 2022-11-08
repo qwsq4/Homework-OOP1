@@ -78,6 +78,11 @@ public class Recipe{
         productList.represent();
     }
 
+    @Override
+    public String toString() {
+        return name + " - " + productList.toString() + ", суммарная стоимость продуктов - " + summaryCost;
+    }
+
     public static String checkNulity(String value, String replace) {
 
         if (value == null || value.equals("")) {

@@ -286,6 +286,16 @@ public abstract class Car extends Transport {
         }
     }
 
+    @Override
+    public String toString() {
+        return getBrand() + " " + getModel() +
+                ": объем двигателя - " + engineVolume +
+                ", необходимая категория прав - " + needCategory +
+                ", водитель - " + driver +
+                ", спонсоры - " + sponsorsList +
+                ", механики - " + mechanicsList;
+    }
+
     private Driver checkDriver(Driver<?> driver) {
         if (this != driver.getCar()) {
             return null;
